@@ -7,15 +7,15 @@ public class Ship : NetworkBehaviour {
 
 	public static Ship Instance;
 
-	private Camera _camera;
+	public Camera Camera;
 
 	// Use this for initialization
 	void Start () {
 		if (Instance == null)
 			Instance = this;
 
-		_camera = GetComponentInChildren<Camera> ();
-		_camera.enabled = false;
+		Camera = GetComponentInChildren<Camera> ();
+		Camera.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -25,7 +25,7 @@ public class Ship : NetworkBehaviour {
 	}
 
 	public void SetCameraActive(bool active) {
-		_camera.enabled = active;
+		Camera.enabled = active;
 	}
 
 }

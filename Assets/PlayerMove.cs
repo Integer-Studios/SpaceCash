@@ -59,7 +59,11 @@ public class PlayerMove : NetworkBehaviour
 
 	private void RotateView()
 	{
-		m_MouseLook.LookRotation (transform, _camera.transform);
+		if (!_steering)
+			m_MouseLook.LookRotation (transform, _camera.transform);
+		else
+			m_MouseLook.LookRotation (Ship.Instance.transform, Ship.Instance.Camera.transform);
+		
 	}
 
 }
