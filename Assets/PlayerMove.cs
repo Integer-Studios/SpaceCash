@@ -7,6 +7,8 @@ public class PlayerMove : NetworkBehaviour
 	public Camera _camera; 
 	[SerializeField] private MouseLook m_MouseLook;
 
+	private bool _steering = false;
+
 	void Start() {
 		m_MouseLook.Init(transform , _camera.transform);
 
@@ -28,10 +30,31 @@ public class PlayerMove : NetworkBehaviour
 			return;
 		RotateView();
 
-		var x = Input.GetAxis("Horizontal")*0.1f;
-		var z = Input.GetAxis("Vertical")*0.1f;
+		if (Input.GetKey (KeyCode.P)) {
+			if (_steering) {
+				Ship.Instance.SetCameraActive (false);
+				_camera.enabled = true;
 
-		transform.Translate(x, 0, z);
+				_steering = false;
+			} else {
+				Ship.Instance.SetCameraActive (true);
+				_camera.enabled = false;
+				_steering = true;
+			}
+		}
+
+		if (!_steering) {
+
+			var x = Input.GetAxis ("Horizontal") * 0.1f;
+			var z = Input.GetAxis ("Vertical") * 0.1f;
+			transform.Translate (x, 0, z);
+		} else {
+
+			var x = Input.GetAxis ("Horizontal") * 0.5f;
+			var z = Input.GetAxis ("Vertical") * 0.5f;
+			Ship.Instance.transform.Translate(x, 0, z);
+
+		}
 	}
 
 	private void RotateView()
