@@ -28,7 +28,6 @@ public class PlayerMove : NetworkBehaviour
 	{
 		if (!isLocalPlayer)
 			return;
-		RotateView();
 
 		if (Input.GetKey (KeyCode.P)) {
 			if (_steering) {
@@ -43,26 +42,37 @@ public class PlayerMove : NetworkBehaviour
 			}
 		}
 
+		GetComponent<Rigidbody> ().AddForce (- Ship.Instance.transform.up  * 9.86f);
 		if (!_steering) {
-
+			
+//			m_MouseLook.clampVerticalRotation = true;
 			var x = Input.GetAxis ("Horizontal") * 0.1f;
 			var z = Input.GetAxis ("Vertical") * 0.1f;
-			transform.Translate (x, 0, z);
+//			UpdatePlayerTransform (new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical")));
+			transform.Translate(x, 0, z);
+		
+
+
 		} else {
+//			m_MouseLook.clampVerticalRotation = false;
+			RotateView();
 
 			var x = Input.GetAxis ("Horizontal") * 0.5f;
 			var z = Input.GetAxis ("Vertical") * 0.5f;
 			Ship.Instance.transform.Translate(x, 0, z);
 
 		}
+
+
 	}
+
 
 	private void RotateView()
 	{
 		if (!_steering)
 			m_MouseLook.LookRotation (transform, _camera.transform);
 		else
-			m_MouseLook.LookRotation (Ship.Instance.transform, Ship.Instance.Camera.transform);
+			m_MouseLook.LookRotation (Ship.Instance.transform, Ship.Instance.Camera.transform, true);
 		
 	}
 
