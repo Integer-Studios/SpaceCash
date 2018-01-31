@@ -11,7 +11,6 @@ public class PlayerMove : NetworkBehaviour
 		m_MouseLook.Init(transform , _camera.transform);
 
 		transform.parent = FindObjectOfType<Ship> ().transform;
-
 		NetworkTransformChild[] childs = Ship.Instance.GetComponents<NetworkTransformChild> ();
 		foreach (NetworkTransformChild t in childs) {
 			if (t.target.gameObject.tag != "Player") {
