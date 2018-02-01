@@ -2,41 +2,35 @@
 using UnityEngine.Networking;
 using UnityStandardAssets.Characters.FirstPerson; 
 
-public class PlayerMove : NetworkBehaviour
-{
+public class Player : NetworkBehaviour {
+
+	public float Speed;
 	public Camera _camera; 
 	[SerializeField] private MouseLook m_MouseLook;
 
 	private bool _steering = false;
+	private Ship _ship;
 
 	void Start() {
 		m_MouseLook.Init(transform , _camera.transform, false);
-
 		transform.parent = FindObjectOfType<Ship> ().transform;
-		NetworkTransformChild[] childs = Ship.Instance.GetComponents<NetworkTransformChild> ();
-		foreach (NetworkTransformChild t in childs) {
-			if (t.target.gameObject.tag != "Player") {
-				t.target = transform;
-				break;
-			}
-		}
-		if(!isLocalPlayer)
-			_camera.enabled = false;
+		_ship = transform.parent.gameObject.GetComponent<Ship> ();
+		if (!isLocalPlayer)
+			GetComponentInChildren<Camera> ().enabled = false;
 	}
-
-	void Update()
-	{
+	
+	void Update() {
 		if (!isLocalPlayer)
 			return;
 
 		if (Input.GetKey (KeyCode.P)) {
 			if (_steering) {
-				Ship.Instance.SetCameraActive (false);
+				_ship.SetCameraActive (false);
 				_camera.enabled = true;
 
 				_steering = false;
 			} else {
-				Ship.Instance.SetCameraActive (true);
+				_ship.SetCameraActive (true);
 				_camera.enabled = false;
 				_steering = true;
 			}
@@ -52,10 +46,11 @@ public class PlayerMove : NetworkBehaviour
 
 			var x = Input.GetAxis ("Horizontal") * 0.5f;
 			var z = Input.GetAxis ("Vertical") * 0.5f;
-			Ship.Instance.transform.Translate(x, 0, z);
+			_ship.transform.Translate(x, 0, z);
 
 		}
-			
+
+//		transform.Translate (new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical")) * Time.deltaTime * Speed);
 	}
 
 	private void RotateView()
@@ -63,8 +58,9 @@ public class PlayerMove : NetworkBehaviour
 		if (!_steering)
 			m_MouseLook.LookRotation (transform, _camera.transform);
 		else
-			Ship.Instance.m_MouseLook.LookRotation (Ship.Instance.transform, Ship.Instance.Camera.transform);
-		
+			_ship.m_MouseLook.LookRotation (_ship.transform,_ship.Camera.transform);
+
+
 	}
 
 }

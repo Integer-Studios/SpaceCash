@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/LilSumn/Scenes/offline.unity
+    guid: a6f4ffcc9b16b4b82a153cbf3c328280
+  - enabled: 1
+    path: Assets/LilSumn/Scenes/ship 1.unity
+    guid: 91465e4bd3d464b0f8438e2e769564c4
