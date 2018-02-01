@@ -16,31 +16,32 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public float smoothTime = 5f;
         public bool lockCursor = true;
 
-
+		private bool _ship = false;
         private Quaternion m_CharacterTargetRot;
         private Quaternion m_CameraTargetRot;
         private bool m_cursorIsLocked = true;
 
-        public void Init(Transform character, Transform camera)
+		public void Init(Transform character, Transform camera, bool ship = false)
         {
             m_CharacterTargetRot = character.localRotation;
             m_CameraTargetRot = camera.localRotation;
+
+			_ship = ship;
         }
 
 
-		public void LookRotation(Transform character, Transform camera, bool _steering = false)
+		public void LookRotation(Transform character, Transform camera)
         {
             float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
             float xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
 
-			if (_steering)
-            	m_CharacterTargetRot *= Quaternion.Euler (-xRot, yRot, 0f);
-			else
-				m_CharacterTargetRot *= Quaternion.Euler (0f, yRot, 0f);
+			if (_ship)
+				m_CharacterTargetRot *= Quaternion.Euler (-xRot, yRot, 0f);
+			else {
+				m_CharacterTargetRot *= Quaternion.Euler (0, yRot, 0f);
 
-			if (!_steering)
-           	 m_CameraTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);
-			
+				m_CameraTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);
+			}
             if(clampVerticalRotation)
                 m_CameraTargetRot = ClampRotationAroundXAxis (m_CameraTargetRot);
 

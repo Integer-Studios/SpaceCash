@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityStandardAssets.Characters.FirstPerson; 
 
 public class Ship : NetworkBehaviour {
 
 	public static Ship Instance;
+	[SerializeField] public MouseLook m_MouseLook;
 
 	public Camera Camera;
 
@@ -14,8 +16,11 @@ public class Ship : NetworkBehaviour {
 		if (Instance == null)
 			Instance = this;
 
+
 		Camera = GetComponentInChildren<Camera> ();
 		Camera.enabled = false;
+		m_MouseLook.Init(transform , Camera.transform, true);
+
 	}
 	
 	// Update is called once per frame

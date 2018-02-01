@@ -10,7 +10,7 @@ public class PlayerMove : NetworkBehaviour
 	private bool _steering = false;
 
 	void Start() {
-		m_MouseLook.Init(transform , _camera.transform);
+		m_MouseLook.Init(transform , _camera.transform, false);
 
 		transform.parent = FindObjectOfType<Ship> ().transform;
 		NetworkTransformChild[] childs = Ship.Instance.GetComponents<NetworkTransformChild> ();
@@ -41,38 +41,29 @@ public class PlayerMove : NetworkBehaviour
 				_steering = true;
 			}
 		}
+		RotateView();
 
-		GetComponent<Rigidbody> ().AddForce (- Ship.Instance.transform.up  * 9.86f);
 		if (!_steering) {
-			
-//			m_MouseLook.clampVerticalRotation = true;
 			var x = Input.GetAxis ("Horizontal") * 0.1f;
 			var z = Input.GetAxis ("Vertical") * 0.1f;
-//			UpdatePlayerTransform (new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical")));
 			transform.Translate(x, 0, z);
-		
-
 
 		} else {
-//			m_MouseLook.clampVerticalRotation = false;
-			RotateView();
 
 			var x = Input.GetAxis ("Horizontal") * 0.5f;
 			var z = Input.GetAxis ("Vertical") * 0.5f;
 			Ship.Instance.transform.Translate(x, 0, z);
 
 		}
-
-
+			
 	}
-
 
 	private void RotateView()
 	{
 		if (!_steering)
 			m_MouseLook.LookRotation (transform, _camera.transform);
 		else
-			m_MouseLook.LookRotation (Ship.Instance.transform, Ship.Instance.Camera.transform, true);
+			Ship.Instance.m_MouseLook.LookRotation (Ship.Instance.transform, Ship.Instance.Camera.transform);
 		
 	}
 
