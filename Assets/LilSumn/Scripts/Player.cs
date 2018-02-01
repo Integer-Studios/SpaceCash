@@ -2,7 +2,7 @@
 using UnityEngine.Networking;
 using UnityStandardAssets.Characters.FirstPerson; 
 
-public class PlayerMove : NetworkBehaviour {
+public class Player : NetworkBehaviour {
 
 	public float Speed;
 
