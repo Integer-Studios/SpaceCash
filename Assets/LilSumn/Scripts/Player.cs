@@ -23,7 +23,7 @@ public class Player : NetworkBehaviour {
 		if (!isLocalPlayer)
 			return;
 
-		if (Input.GetKey (KeyCode.P)) {
+		if (Input.GetKeyUp (KeyCode.P)) {
 			if (_steering) {
 				_ship.SetCameraActive (false);
 				_camera.enabled = true;
