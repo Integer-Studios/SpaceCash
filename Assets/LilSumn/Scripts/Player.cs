@@ -46,7 +46,7 @@ public class Player : NetworkBehaviour {
 
 			var x = Input.GetAxis ("Horizontal") * 0.5f;
 			var z = Input.GetAxis ("Vertical") * 0.5f;
-			_ship.transform.Translate(x, 0, z);
+//			_ship.transform.Translate(x, 0, z);
 
 		}
 
