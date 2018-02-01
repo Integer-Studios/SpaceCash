@@ -438,8 +438,9 @@ GameObject:
   - component: {fileID: 136767326181536140}
   - component: {fileID: 114172303236483448}
   - component: {fileID: 114093152935516792}
+  - component: {fileID: 114233793961140946}
   m_Layer: 0
-  m_Name: SS_Character_JumpSuit_Male_White
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1015,16 +1016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 884cb9dfa9f4041edb11ef53a130e573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 20753416274014714}
-  m_MouseLook:
-    XSensitivity: 2
-    YSensitivity: 2
-    clampVerticalRotation: 1
-    MinimumX: -90
-    MaximumX: 90
-    smooth: 0
-    smoothTime: 5
-    lockCursor: 1
+  Speed: 5
 --- !u!114 &114172303236483448
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1057,6 +1049,21 @@ MonoBehaviour:
     i15: 121
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114233793961140946
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1825718022864458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01fcbc6901b74b3ba61e9949a7ce3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Interval: 9
+  Allowance: 0.1
+  Smoothing: 0.2
+  LocalPlayerAuthoritive: 1
 --- !u!124 &124531862562693266
 Behaviour:
   m_ObjectHideFlags: 1
