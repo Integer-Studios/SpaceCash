@@ -14,6 +14,7 @@ public class LilNetTransform : NetworkBehaviour {
 
 	private Vector3 _correctPosition;
 	private Vector3 _correctRotation;
+	private Vector3 _eulers;
 
 	private void Start() {
 		if (NetworkServer.active)
@@ -45,14 +46,15 @@ public class LilNetTransform : NetworkBehaviour {
 
 	private void UpdateClient() {
 		// local player on LPA doesnt need to lerp cause it is sending positions
-		if (!(isLocalPlayer && LocalPlayerAuthoritive)) {
+		if ((!LocalPlayerAuthoritive && !NetworkServer.active) || (LocalPlayerAuthoritive && !isLocalPlayer)) {
 			// lerp to correct transform
 			if (Vector3.Distance (_correctPosition, transform.localPosition) > PositionAllowance)
 				transform.localPosition = Vector3.Lerp (transform.localPosition, _correctPosition, Smoothing);
 
 			if (Vector3.Distance(_correctRotation, transform.localEulerAngles) > RotationAllowance)
-				transform.localRotation = Quaternion.Lerp (transform.localRotation, Quaternion.Euler(_correctRotation), Smoothing);
+				_eulers = Quaternion.Lerp (Quaternion.Euler(_eulers), Quaternion.Euler(_correctRotation), Smoothing).eulerAngles;
 				
+			transform.localEulerAngles = _eulers;
 		}
 	}
 
@@ -72,7 +74,7 @@ public class LilNetTransform : NetworkBehaviour {
 		// initial set shouldnt use lerp
 		if (_correctPosition == Vector3.zero) {
 			transform.localPosition = pos;
-			transform.localEulerAngles = rot;
+			_eulers = rot;
 		}
 		// set lerp
 		_correctPosition = pos;
@@ -89,7 +91,7 @@ public class LilNetTransform : NetworkBehaviour {
 		// initial set shouldnt use lerp
 		if (_correctPosition == Vector3.zero) {
 			transform.localPosition = pos;
-			transform.localEulerAngles = rot;
+			_eulers = rot;
 		}
 		// set lerp
 		_correctPosition = pos;

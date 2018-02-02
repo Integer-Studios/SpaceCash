@@ -38,7 +38,7 @@ public class Ship : NetworkBehaviour {
 	}
 
 	private void UpdateServer() {
-		transform.Translate (Vector3.forward * Time.deltaTime * 3f);
+//		transform.Translate (Vector3.forward * Time.deltaTime * 500f);
 	}
 
 	private void UpdateClient() {
