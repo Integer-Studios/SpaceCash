@@ -15,6 +15,7 @@ public class LilNetTransform : NetworkBehaviour {
 	private Vector3 _correctPosition;
 	private Vector3 _correctRotation;
 	private Vector3 _eulers;
+	private GameObject _parent;
 
 	private void Start() {
 		if (NetworkServer.active)
@@ -62,40 +63,59 @@ public class LilNetTransform : NetworkBehaviour {
 		Debug.Log ("I'm firing updates " + gameObject.name);
 		while (enabled) {
 			if (NetworkServer.active) // either its local player auth and u are the host, or its server auth, either way use rpc
-				RpcTransform (transform.localPosition, transform.localEulerAngles);
+				RpcTransform (transform.localPosition, transform.localEulerAngles, Parent());
 			else // this means u called it as local player auth and ur a client so use command
-				CmdTransform (transform.localPosition, transform.localEulerAngles);
+				CmdTransform (transform.localPosition, transform.localEulerAngles, Parent());
 			yield return new WaitForSeconds (1 / Interval);
 		}
 	}
 
 	[Command]
-	private void CmdTransform(Vector3 pos, Vector3 rot) {
+	private void CmdTransform(Vector3 pos, Vector3 rot, GameObject parent) {
+		// make sure parent is correct
+		if (parent == gameObject && transform.parent != null)
+			transform.parent = null;
+		if (parent != gameObject && transform.parent != parent)
+			transform.parent = parent.transform;
 		// initial set shouldnt use lerp
 		if (_correctPosition == Vector3.zero) {
 			transform.localPosition = pos;
 			_eulers = rot;
+			transform.localEulerAngles = _eulers;
 		}
 		// set lerp
 		_correctPosition = pos;
 		_correctRotation = rot;
 		// relay to rpc
-		RpcTransform (_correctPosition, _correctRotation);
+		RpcTransform (_correctPosition, _correctRotation, parent);
 	}
 
 	[ClientRpc]
-	private void RpcTransform(Vector3 pos, Vector3 rot) {
+	private void RpcTransform(Vector3 pos, Vector3 rot, GameObject parent) {
 		// net server doesnt need it cause it sent the command, local auth doesnt cause it sent the command
 		if (NetworkServer.active || (LocalPlayerAuthoritive && isLocalPlayer))
 			return;
+		// make sure parent is correct
+		if (parent == gameObject && transform.parent != null)
+			transform.parent = null;
+		if (parent != gameObject && transform.parent != parent)
+			transform.parent = parent.transform;
 		// initial set shouldnt use lerp
 		if (_correctPosition == Vector3.zero) {
 			transform.localPosition = pos;
 			_eulers = rot;
+			transform.localEulerAngles = _eulers;
 		}
 		// set lerp
 		_correctPosition = pos;
 		_correctRotation = rot;
 
+	}
+
+	private GameObject Parent() {
+		if (transform.parent == null)
+			return gameObject;
+		else
+			return transform.parent.gameObject;
 	}
 }

@@ -10,28 +10,36 @@ public class Player : NetworkBehaviour {
 	public float Threshold;
 
 	private Ship _ship;
+	private Rigidbody _rigidbody;
 	private Animator _animator;
 	private Vector3 _prevPos;
 	private float _displacement;
 	[SyncVar]
 	private bool _running;
 	private bool _clientRunning;
+	private bool _parentingCooldown = true;
 
 	void Start() {
 		
 		_ship = FindObjectOfType<Ship> ();
+		_rigidbody = GetComponent<Rigidbody> ();
 		_animator = GetComponentInChildren<Animator> ();
 		transform.parent = _ship.transform;
 
 		if (!isLocalPlayer) {
 			GetComponentInChildren<Camera> ().enabled = false;
 			GetComponent<CharacterController> ().enabled = false;
+			GetComponent<FirstPersonController> ().enabled = false;
 			GetComponentInChildren<AudioListener> ().enabled = false;
+		} else {
+			_animator.gameObject.GetComponentInChildren<SkinnedMeshRenderer> ().gameObject.layer = 10;
+			GetComponentInChildren<Camera> ().cullingMask = ~(1 << 10);
 		}
 	}
 	
 	void Update() {
-		_displacement = Vector3.Distance (_prevPos, transform.localPosition) * 0.9f;
+
+		_displacement = Vector3.Distance (_prevPos, transform.localPosition);
 		_prevPos = transform.localPosition;
 		if (isLocalPlayer && _clientRunning)
 			_animator.SetFloat ("Speed_f", 1f);
@@ -65,6 +73,8 @@ public class Player : NetworkBehaviour {
 			StartCoroutine(Jump ());
 			CmdJump ();
 		}
+
+
 		
 	}
 
@@ -74,6 +84,34 @@ public class Player : NetworkBehaviour {
 		_animator.SetBool ("Jump_b", false);
 	}
 
+	public Vector3 GetGravity() {
+		if (_ship == null)
+			return Vector3.zero;
+		return _ship.transform.up * -9.81f;
+	}
+
+	void OnTriggerEnter(Collider c) {
+		if (c.gameObject.tag == "doorway" && _parentingCooldown) {
+			_parentingCooldown = false;
+			StartCoroutine (CooldownParenting ());
+			if (transform.parent == null) {
+				Debug.Log ("enter");
+				_ship = c.gameObject.transform.parent.GetComponentInParent<Ship> ();
+				transform.SetParent(_ship.transform);
+				GetComponent<FirstPersonController> ().SetParent (_ship.transform);
+			} else {
+				Debug.Log ("exit");
+				GetComponent<FirstPersonController> ().RemoveParent (_ship.transform);
+				transform.SetParent(null);
+				_ship = null;
+			}
+		}
+	}
+
+	private IEnumerator CooldownParenting() {
+		yield return new WaitForSeconds (0.2f);
+		_parentingCooldown = true;
+	}
 
 	[Command]
 	void CmdRun(bool b) {
@@ -89,4 +127,6 @@ public class Player : NetworkBehaviour {
 		if (!isLocalPlayer)
 			StartCoroutine(Jump ());
 	}
+
+
 }

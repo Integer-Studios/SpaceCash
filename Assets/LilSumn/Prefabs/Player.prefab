@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4661506441560406}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Hips_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4979764156120938}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Toe_Left_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4096214861635264}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Forearm_Left_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4157070977385056}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Spine_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4190380340754912}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Forearm_Right_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4834891338556246}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Shoulder_Right_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4278523197011268}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: UpperLeg_Left_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4897257831584208}
   - component: {fileID: 95746852847125690}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SS_Character_SpaceSuit_OldSchool_White
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4115796470482554}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Arm_Right_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4520410012740688}
   - component: {fileID: 137030006616864404}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SS_Char_JumpSuit_Male
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4415947990682722}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Chest_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4884457582671106}
   - component: {fileID: 137333685006301404}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SS_Char_JumpSuit_Female
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4389472425495970}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Neck_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4514751130950948}
   - component: {fileID: 137999072204784310}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SS_Char_SpaceSuit_OldSchool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4033905508112854}
   - component: {fileID: 137885346648460056}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SS_Char_Scientist_Female
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4464413361248320}
   - component: {fileID: 137531720979342130}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SS_Char_Scientist_Male
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4589970241122780}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Foot_Left_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +280,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4537514721087224}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: LowerLeg_Right_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4262508671334762}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Hand_Right_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -310,7 +310,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4848726520471548}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Hand_Left_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +325,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4314065386215150}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Foot_Right_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -340,7 +340,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4420305373344664}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: LowerLeg_Left_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,7 +355,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4356643114090070}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: UpperLeg_Right_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,7 +371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4091047800980346}
   - component: {fileID: 137588364982993728}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SS_Char_SpaceSuit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -386,7 +386,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4642262268263516}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Head_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,13 +402,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4499778438057546}
   - component: {fileID: 143305240652576674}
-  - component: {fileID: 114279996032836900}
   - component: {fileID: 54435845573717938}
   - component: {fileID: 82412434173346756}
   - component: {fileID: 114946178154850158}
   - component: {fileID: 114745246646574134}
   - component: {fileID: 114698025498289246}
-  m_Layer: 10
+  - component: {fileID: 114601115951341952}
+  m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,7 +424,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4889667263843064}
   - component: {fileID: 137238443680432746}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SS_Char_SpaceSuitHelmet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -439,7 +439,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4825728607102188}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Spine_jnt 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,7 +455,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4292761565648708}
   - component: {fileID: 137969468295413694}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SS_Char_SpaceSuitHelmet_OldSchool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 20221326590472720}
   - component: {fileID: 81618174791518390}
   - component: {fileID: 124141223144186434}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: FirstPersonCharacter
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -488,7 +488,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4812375413769328}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Shoulder_Left_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -503,7 +503,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4963832251764508}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Arm_Left_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -518,7 +518,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4834894970281252}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Toe_Right_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -752,7 +752,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1844788310010336}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7851.6797, y: 35.457214, z: -85.199455}
+  m_LocalPosition: {x: -652.3313, y: 55.52999, z: -1.0794162}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4441421255683328}
@@ -1031,7 +1031,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
@@ -1135,12 +1135,12 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 1de385df2ff713a41adfcbbb63b8af91, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114279996032836900
+--- !u!114 &114601115951341952
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1148,7 +1148,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1844788310010336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05ec5cf00ca181d45a42ba1870e148c3, type: 3}
+  m_Script: {fileID: 11500000, guid: ceb5a20f676de4539a8e33eb0de6da49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_IsWalking: 0
@@ -1157,17 +1157,17 @@ MonoBehaviour:
   m_RunstepLenghten: 0.7
   m_JumpSpeed: 10
   m_StickToGroundForce: 10
-  m_GravityMultiplier: 2
+  m_GravityMultiplier: 1
   m_MouseLook:
-    XSensitivity: 2
-    YSensitivity: 2
+    XSensitivity: 8
+    YSensitivity: 8
     clampVerticalRotation: 1
     MinimumX: -90
     MaximumX: 90
     smooth: 0
     smoothTime: 5
     lockCursor: 1
-  m_UseFovKick: 1
+  m_UseFovKick: 0
   m_FovKick:
     Camera: {fileID: 0}
     originalFov: 0
@@ -1176,19 +1176,7 @@ MonoBehaviour:
     TimeToDecrease: 1
     IncreaseCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 1
-        value: 1
-        inSlope: 2
-        outSlope: 2
-        tangentMode: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1234,12 +1222,14 @@ MonoBehaviour:
       m_RotationOrder: 4
     VerticaltoHorizontalRatio: 2
   m_JumpBob:
-    BobDuration: 0.2
-    BobAmount: 0.1
+    BobDuration: 0
+    BobAmount: 0
   m_StepInterval: 5
   m_FootstepSounds:
   - {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
   - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
+  - {fileID: 8300000, guid: 5a9383dda6cabc047b7a297602e93eb4, type: 3}
+  - {fileID: 8300000, guid: e9714160ce34f2b4ab63ff8c27bd68e1, type: 3}
   m_JumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
   m_LandSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
 --- !u!114 &114698025498289246
@@ -1253,6 +1243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 884cb9dfa9f4041edb11ef53a130e573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Threshold: 0.05
 --- !u!114 &114745246646574134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1864,7 +1855,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 1.8
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08

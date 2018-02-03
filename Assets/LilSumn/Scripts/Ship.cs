@@ -38,7 +38,7 @@ public class Ship : NetworkBehaviour {
 	}
 
 	private void UpdateServer() {
-//		transform.Translate (Vector3.forward * Time.deltaTime * 500f);
+		transform.Translate (Vector3.forward * Time.deltaTime * 1f);
 	}
 
 	private void UpdateClient() {
@@ -48,6 +48,7 @@ public class Ship : NetworkBehaviour {
 	public void SetCameraActive(bool active) {
 		Camera.enabled = active;
 	}
+
 
 	
 }
