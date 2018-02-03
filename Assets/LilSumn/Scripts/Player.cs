@@ -1,15 +1,21 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Networking;
 using UnityStandardAssets.Characters.FirstPerson; 
 using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : NetworkBehaviour {
 
+	public float Threshold;
+
 	private Ship _ship;
 	private Animator _animator;
-
+	private Vector3 _prevPos;
+	private float _displacement;
 	[SyncVar]
-	private int _walkSpeed;
+	private bool _running;
+	private bool _clientRunning;
 
 	void Start() {
 		
@@ -25,28 +31,62 @@ public class Player : NetworkBehaviour {
 	}
 	
 	void Update() {
-		_animator.SetFloat ("Speed_f", ((float)_walkSpeed)/2f);
+		_displacement = Vector3.Distance (_prevPos, transform.localPosition) * 0.9f;
+		_prevPos = transform.localPosition;
+		if (isLocalPlayer && _clientRunning)
+			_animator.SetFloat ("Speed_f", 1f);
+		else if (_running)
+			_animator.SetFloat ("Speed_f", 1f);
+		else if (_displacement > Threshold)
+			_animator.SetFloat ("Speed_f", 0.5f);
+		else
+			_animator.SetFloat ("Speed_f", 0f);
+
+		if (!Physics.Raycast (transform.position, transform.up * -1, 2f)) {
+			_animator.SetBool ("Grounded", false);
+		} else {
+			_animator.SetBool ("Grounded", true);
+		}
 
 		if (!isLocalPlayer) {
 			return;
 		}
-		
-		int i = 0;
-		if (Mathf.Abs(CrossPlatformInputManager.GetAxis ("Vertical")) > 0.5f)
-			i = 1;
-		if (Input.GetKey (KeyCode.LeftShift))
-			i = 2;
 
-		if (_walkSpeed != i) {
-			_walkSpeed = i;
-			CmdSetWalkSpeed (_walkSpeed);
+		if (Input.GetKey (KeyCode.LeftShift) && !_clientRunning) {
+			_clientRunning = true;
+			CmdRun (_clientRunning);
+		}
+		if (!Input.GetKey (KeyCode.LeftShift) && _clientRunning) {
+			_clientRunning = false;
+			CmdRun (_clientRunning);
+		}
+
+		if (CrossPlatformInputManager.GetButton ("Jump")) {
+			StartCoroutine(Jump ());
+			CmdJump ();
 		}
 		
 	}
 
+	private IEnumerator Jump() {
+		_animator.SetBool ("Jump_b", true);
+		yield return new WaitForSeconds (0.2f);
+		_animator.SetBool ("Jump_b", false);
+	}
+
+
 	[Command]
-	void CmdSetWalkSpeed(int f) {
+	void CmdRun(bool b) {
+		_running = b;
+	}
+
+	[Command]
+	void CmdJump() {
+		RpcJump ();
+	}
+	[ClientRpc]
+	void RpcJump() {
 		if (!isLocalPlayer)
-			_walkSpeed = f;
+			StartCoroutine(Jump ());
 	}
 }

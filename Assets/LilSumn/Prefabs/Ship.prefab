@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 33889751242337516}
   - component: {fileID: 23808040529370262}
   - component: {fileID: 64653514850621980}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (53)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 33908978899403424}
   - component: {fileID: 23821263161340534}
   - component: {fileID: 64807586016677932}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 33452997730390352}
   - component: {fileID: 23228646553623550}
   - component: {fileID: 64187143388696136}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (28)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 33205546603351008}
   - component: {fileID: 23966380277548584}
   - component: {fileID: 64468772587255564}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (56)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -680,7 +680,7 @@ GameObject:
   - component: {fileID: 33271277432354060}
   - component: {fileID: 23603202877049538}
   - component: {fileID: 64523653435800466}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (51)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -751,7 +751,7 @@ GameObject:
   - component: {fileID: 33277348393771836}
   - component: {fileID: 23620933982527586}
   - component: {fileID: 64169117050069168}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -803,7 +803,7 @@ GameObject:
   - component: {fileID: 33606701602970726}
   - component: {fileID: 23125871762759988}
   - component: {fileID: 64514568813746434}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (34)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -927,7 +927,7 @@ GameObject:
   - component: {fileID: 33796406856484906}
   - component: {fileID: 23944866639839764}
   - component: {fileID: 64775974917420012}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1179,7 +1179,7 @@ GameObject:
   - component: {fileID: 33615660664582010}
   - component: {fileID: 23371736988274320}
   - component: {fileID: 64550911905153616}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1215,7 +1215,7 @@ GameObject:
   - component: {fileID: 33403183477534234}
   - component: {fileID: 23635640518233440}
   - component: {fileID: 64699567613914554}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (27)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1357,7 +1357,7 @@ GameObject:
   - component: {fileID: 33085557830573618}
   - component: {fileID: 23995620545395404}
   - component: {fileID: 64023582433342470}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1411,7 +1411,7 @@ GameObject:
   - component: {fileID: 33132153140757220}
   - component: {fileID: 23844829861120336}
   - component: {fileID: 64124670994916140}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1465,7 +1465,7 @@ GameObject:
   - component: {fileID: 33313295086437584}
   - component: {fileID: 23218854021244050}
   - component: {fileID: 64186274335997660}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1483,7 +1483,7 @@ GameObject:
   - component: {fileID: 33359486705639580}
   - component: {fileID: 23691087003924250}
   - component: {fileID: 64918643171757748}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1553,7 +1553,7 @@ GameObject:
   - component: {fileID: 33230329142835582}
   - component: {fileID: 23878104478016220}
   - component: {fileID: 64656847076383944}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (49)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1589,7 +1589,7 @@ GameObject:
   - component: {fileID: 33455842849510508}
   - component: {fileID: 23592852639772110}
   - component: {fileID: 64504127834796026}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (59)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1766,7 +1766,7 @@ GameObject:
   - component: {fileID: 33273286529025418}
   - component: {fileID: 23004706757373572}
   - component: {fileID: 64704289504274894}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (45)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2034,7 +2034,7 @@ GameObject:
   - component: {fileID: 33823366918274706}
   - component: {fileID: 23097881718659450}
   - component: {fileID: 64375335759095722}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (37)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2333,7 +2333,7 @@ GameObject:
   - component: {fileID: 33468678787591306}
   - component: {fileID: 23514874767546508}
   - component: {fileID: 64303312347123646}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (41)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2509,7 +2509,7 @@ GameObject:
   - component: {fileID: 33223632110298436}
   - component: {fileID: 23079922283342532}
   - component: {fileID: 64676296059015836}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (44)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2527,7 +2527,7 @@ GameObject:
   - component: {fileID: 33274840645777946}
   - component: {fileID: 23126061676835686}
   - component: {fileID: 64683469336234890}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (26)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2581,7 +2581,7 @@ GameObject:
   - component: {fileID: 33313362043559202}
   - component: {fileID: 23336257967883054}
   - component: {fileID: 64100841334445248}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (39)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2635,7 +2635,7 @@ GameObject:
   - component: {fileID: 33208549114809996}
   - component: {fileID: 23861051126773172}
   - component: {fileID: 64195366979404908}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (35)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2653,7 +2653,7 @@ GameObject:
   - component: {fileID: 33669193916645710}
   - component: {fileID: 23477952844262796}
   - component: {fileID: 64420771709283120}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (52)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2671,7 +2671,7 @@ GameObject:
   - component: {fileID: 33670201099788164}
   - component: {fileID: 23003973092747060}
   - component: {fileID: 64057769240293964}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (57)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2689,7 +2689,7 @@ GameObject:
   - component: {fileID: 33373324367876888}
   - component: {fileID: 23605596714810450}
   - component: {fileID: 64046593017529054}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2761,7 +2761,7 @@ GameObject:
   - component: {fileID: 33463203373995984}
   - component: {fileID: 23114300978491542}
   - component: {fileID: 64613690104163354}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2901,7 +2901,7 @@ GameObject:
   - component: {fileID: 33202659993323614}
   - component: {fileID: 23423895895409186}
   - component: {fileID: 64011167577886390}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (36)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3276,7 +3276,7 @@ GameObject:
   - component: {fileID: 33648440268602458}
   - component: {fileID: 23935050573043276}
   - component: {fileID: 64227082040298432}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3348,7 +3348,7 @@ GameObject:
   - component: {fileID: 33807305826981614}
   - component: {fileID: 23084507142068370}
   - component: {fileID: 64813000514130074}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (31)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3384,7 +3384,7 @@ GameObject:
   - component: {fileID: 33273138232968058}
   - component: {fileID: 23040402595609826}
   - component: {fileID: 64832260217617632}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (32)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3510,7 +3510,7 @@ GameObject:
   - component: {fileID: 33931679698660062}
   - component: {fileID: 23675639203858034}
   - component: {fileID: 64160074885606232}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (54)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3528,7 +3528,7 @@ GameObject:
   - component: {fileID: 33059791871316400}
   - component: {fileID: 23343984384588324}
   - component: {fileID: 64124549763211936}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (48)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3762,7 +3762,7 @@ GameObject:
   - component: {fileID: 33857138313739826}
   - component: {fileID: 23290442039048082}
   - component: {fileID: 64363546502375172}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (58)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3832,7 +3832,7 @@ GameObject:
   - component: {fileID: 33916064745624042}
   - component: {fileID: 23709956888402434}
   - component: {fileID: 64277907824050534}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3976,7 +3976,7 @@ GameObject:
   - component: {fileID: 33016048078241272}
   - component: {fileID: 23998879581283680}
   - component: {fileID: 64320439305879144}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4030,7 +4030,7 @@ GameObject:
   - component: {fileID: 33383519239399212}
   - component: {fileID: 23638739338383192}
   - component: {fileID: 64669562679382332}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (42)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4154,7 +4154,7 @@ GameObject:
   - component: {fileID: 33915448435248448}
   - component: {fileID: 23459578953026164}
   - component: {fileID: 64053950537038198}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (47)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4262,7 +4262,7 @@ GameObject:
   - component: {fileID: 33998885558917004}
   - component: {fileID: 23131697992974218}
   - component: {fileID: 64863857923199808}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (38)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4492,7 +4492,7 @@ GameObject:
   - component: {fileID: 33088875954618746}
   - component: {fileID: 23365603061369544}
   - component: {fileID: 64621870165527786}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (50)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4546,7 +4546,7 @@ GameObject:
   - component: {fileID: 33026684552649098}
   - component: {fileID: 23448324366784484}
   - component: {fileID: 64335763480224862}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (33)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4690,7 +4690,7 @@ GameObject:
   - component: {fileID: 33372497002108384}
   - component: {fileID: 23777765438901154}
   - component: {fileID: 64436121485062398}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (55)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4778,7 +4778,7 @@ GameObject:
   - component: {fileID: 33011530683710662}
   - component: {fileID: 23855463543341764}
   - component: {fileID: 64598383182679800}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (43)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4814,7 +4814,7 @@ GameObject:
   - component: {fileID: 33686390341365192}
   - component: {fileID: 23557802676376594}
   - component: {fileID: 64303331196894874}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (46)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4832,7 +4832,7 @@ GameObject:
   - component: {fileID: 33507091124252188}
   - component: {fileID: 23309857789357268}
   - component: {fileID: 64266422274844038}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5024,7 +5024,7 @@ GameObject:
   - component: {fileID: 33820498481140818}
   - component: {fileID: 23731226628573638}
   - component: {fileID: 64212582670874798}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: scifi_floor_3 (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24468,9 +24468,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e669a17caaa5488ea8e819b1988f4ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Interval: 9
-  Allowance: 0
-  Smoothing: 0.5
+  m_MouseLook:
+    XSensitivity: 2
+    YSensitivity: 2
+    clampVerticalRotation: 1
+    MinimumX: -90
+    MaximumX: 90
+    smooth: 0
+    smoothTime: 5
+    lockCursor: 1
+  Camera: {fileID: 0}
 --- !u!114 &114755668127122938
 MonoBehaviour:
   m_ObjectHideFlags: 1
