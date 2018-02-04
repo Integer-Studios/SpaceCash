@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 	[RequireComponent(typeof (AudioSource))]
 	public class FirstPersonController : MonoBehaviour
 	{
+
 		[SerializeField] private bool m_IsWalking;
 		[SerializeField] private float m_WalkSpeed;
 		[SerializeField] private float m_RunSpeed;
@@ -136,6 +137,7 @@ using Random = UnityEngine.Random;
 			ProgressStepCycle(speed);
 			UpdateCameraPosition(speed);
 
+
 			m_MouseLook.UpdateCursorLock();
 		}
 
@@ -190,7 +192,10 @@ using Random = UnityEngine.Random;
 			{
 				return;
 			}
-			if (m_CharacterController.velocity.magnitude > 0 && m_CharacterController.isGrounded)
+			// downsample to avoid weird artifacts
+			int i = (int)(m_CharacterController.velocity.magnitude * 100f);
+			float f = (float)i;
+			if (f > 0 && m_CharacterController.isGrounded)
 			{
 				m_Camera.transform.localPosition =
 					m_HeadBob.DoHeadBob(m_CharacterController.velocity.magnitude +
