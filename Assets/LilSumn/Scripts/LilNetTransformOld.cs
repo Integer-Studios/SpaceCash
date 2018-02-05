@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class LilNetTransform : NetworkBehaviour {
+public class LilNetTransformOld : NetworkBehaviour {
 
 	public float Interval = 9f;
 	public float Smoothing = 0.5f;

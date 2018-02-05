@@ -34,6 +34,7 @@ public class Player : NetworkBehaviour {
 		} else {
 			_animator.gameObject.GetComponentInChildren<SkinnedMeshRenderer> ().gameObject.layer = 10;
 			GetComponentInChildren<Camera> ().cullingMask = ~(1 << 10);
+			GameController.Instance.RegisterLocalPlayer (this);
 		}
 	}
 	
