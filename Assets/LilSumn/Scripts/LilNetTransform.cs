@@ -20,7 +20,8 @@ public class LilNetTransform : NetworkBehaviour {
 		if (hasAuthority)
 			StartCoroutine (NetworkTransformUpdate ());
 	}
-	void OnStartAuthority() {
+	public override void OnStartAuthority() {
+		Debug.Log ("boom");
 		StartCoroutine (NetworkTransformUpdate ());
 	}
 

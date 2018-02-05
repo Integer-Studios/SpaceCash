@@ -13,23 +13,24 @@ public class Player : NetworkBehaviour {
 	private Rigidbody _rigidbody;
 	private Animator _animator;
 	private Vector3 _prevPos;
+	private CommandCenter _cmd;
 	private float _displacement;
 	[SyncVar]
 	private bool _running;
 	private bool _clientRunning;
 	private bool _parentingCooldown = true;
+	private bool _inputDisabled;
 
 	void Start() {
 		
 		_ship = FindObjectOfType<Ship> ();
 		_rigidbody = GetComponent<Rigidbody> ();
 		_animator = GetComponentInChildren<Animator> ();
+		_cmd = GetComponent<CommandCenter> ();
 		transform.parent = _ship.transform;
 
 		if (!isLocalPlayer) {
-			GetComponentInChildren<Camera> ().enabled = false;
-			GetComponent<CharacterController> ().enabled = false;
-			GetComponent<FirstPersonController> ().enabled = false;
+			DisableCharacter ();
 			GetComponentInChildren<AudioListener> ().enabled = false;
 		} else {
 			_animator.gameObject.GetComponentInChildren<SkinnedMeshRenderer> ().gameObject.layer = 10;
@@ -57,9 +58,12 @@ public class Player : NetworkBehaviour {
 			_animator.SetBool ("Grounded", true);
 		}
 
-		if (!isLocalPlayer) {
+		if (!isLocalPlayer || _inputDisabled) {
 			return;
 		}
+
+		if (Input.GetKeyDown (KeyCode.P))
+			AttemptDriveShip ();
 
 		if (Input.GetKey (KeyCode.LeftShift) && !_clientRunning) {
 			_clientRunning = true;
@@ -112,6 +116,22 @@ public class Player : NetworkBehaviour {
 	private IEnumerator CooldownParenting() {
 		yield return new WaitForSeconds (0.2f);
 		_parentingCooldown = true;
+	}
+
+	private void AttemptDriveShip() {
+		if (!_ship.HasDriver) {
+			_cmd.CmdDriveShip (_ship.gameObject);
+			_ship.Driving = true;
+			DisableCharacter ();
+			_ship.SetCameraActive (true);
+		}
+	}
+
+	private void DisableCharacter() {
+		_inputDisabled = true;
+		GetComponentInChildren<Camera> ().enabled = false;
+		GetComponent<CharacterController> ().enabled = false;
+		GetComponent<FirstPersonController> ().enabled = false;
 	}
 
 	[Command]

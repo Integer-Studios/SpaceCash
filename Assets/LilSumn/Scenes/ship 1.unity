@@ -31450,7 +31450,6 @@ MonoBehaviour:
   Smoothing: 0.2
   PositionAllowance: 0.1
   RotationAllowance: 5
-  LocalPlayerAuthoritive: 0
 --- !u!114 &1421380168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31473,6 +31472,8 @@ MonoBehaviour:
     smoothTime: 5
     lockCursor: 1
   Camera: {fileID: 1175981615}
+  HasDriver: 0
+  Driving: 0
 --- !u!114 &1421380169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31505,7 +31506,7 @@ MonoBehaviour:
     i14: 204
     i15: 115
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
 --- !u!4 &1421380170
 Transform:
   m_ObjectHideFlags: 0

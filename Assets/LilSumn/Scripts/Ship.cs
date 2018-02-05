@@ -9,6 +9,11 @@ public class Ship : NetworkBehaviour {
 	[SerializeField] public MouseLook m_MouseLook;
 	public Camera Camera;
 
+	[SyncVar]
+	public bool HasDriver;
+
+	public bool Driving;
+
 	private void Start() {
 		if (NetworkServer.active)
 			StartServer ();
@@ -38,17 +43,23 @@ public class Ship : NetworkBehaviour {
 	}
 
 	private void UpdateServer() {
-		transform.Translate (Vector3.forward * Time.deltaTime * 1f);
+		
 	}
 
 	private void UpdateClient() {
-		
+		if (hasAuthority && Driving)
+			transform.Translate (new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical"))*5f * Time.deltaTime);
 	}
 
 	public void SetCameraActive(bool active) {
 		Camera.enabled = active;
 	}
 
+	[Server]
+	public void SetDriver(GameObject player) {
+		HasDriver = true;
+		GetComponent<NetworkIdentity> ().AssignClientAuthority (player.GetComponent<NetworkIdentity> ().connectionToClient);
+	}
 
 	
 }
