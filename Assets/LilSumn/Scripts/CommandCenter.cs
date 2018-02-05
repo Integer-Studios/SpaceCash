@@ -5,4 +5,5 @@ using UnityEngine.Networking;
 
 public class CommandCenter : NetworkBehaviour {
 
+		
 }

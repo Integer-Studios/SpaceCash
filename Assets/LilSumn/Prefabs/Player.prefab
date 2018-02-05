@@ -1261,7 +1261,6 @@ MonoBehaviour:
   Smoothing: 0.2
   PositionAllowance: 0.1
   RotationAllowance: 0
-  LocalPlayerAuthoritive: 1
 --- !u!114 &114946178154850158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1293,7 +1292,7 @@ MonoBehaviour:
     i14: 136
     i15: 253
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114970215740882024
 MonoBehaviour:
   m_ObjectHideFlags: 1
