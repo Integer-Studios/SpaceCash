@@ -9,5 +9,10 @@ public class CommandCenter : NetworkBehaviour {
 	public void CmdDriveShip(GameObject g) {
 		g.GetComponent<Ship> ().SetDriver (gameObject);
 	}
+
+    [Command]
+    public void CmdStopDriveShip(GameObject g) {
+        g.GetComponent<Ship>().UnSetDriver(gameObject);
+    }
 		
 }

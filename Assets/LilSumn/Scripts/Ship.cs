@@ -61,5 +61,11 @@ public class Ship : NetworkBehaviour {
 		GetComponent<NetworkIdentity> ().AssignClientAuthority (player.GetComponent<NetworkIdentity> ().connectionToClient);
 	}
 
+    [Server]
+    public void UnSetDriver(GameObject player) {
+        HasDriver = false;
+        GetComponent<NetworkIdentity>().RemoveClientAuthority(player.GetComponent<NetworkIdentity>().connectionToClient);
+    }
+
 	
 }

@@ -58,13 +58,19 @@ public class Player : NetworkBehaviour {
 			_animator.SetBool ("Grounded", true);
 		}
 
+        if (Input.GetKeyDown(KeyCode.P)) {
+            if (!_ship.HasDriver)
+                AttemptDriveShip();
+            else
+                StopDriveShip();
+
+        }
+
 		if (!isLocalPlayer || _inputDisabled) {
 			return;
 		}
 
-		if (Input.GetKeyDown (KeyCode.P))
-			AttemptDriveShip ();
-
+       
 		if (Input.GetKey (KeyCode.LeftShift) && !_clientRunning) {
 			_clientRunning = true;
 			CmdRun (_clientRunning);
@@ -127,12 +133,29 @@ public class Player : NetworkBehaviour {
 		}
 	}
 
+    private void StopDriveShip() {
+        if (_ship.HasDriver) {
+            _ship.Driving = false;
+            EnableCharacter();
+            _ship.SetCameraActive(false);
+            _cmd.CmdStopDriveShip(_ship.gameObject);
+        }
+ 
+    }
+
 	private void DisableCharacter() {
 		_inputDisabled = true;
 		GetComponentInChildren<Camera> ().enabled = false;
 		GetComponent<CharacterController> ().enabled = false;
 		GetComponent<FirstPersonController> ().enabled = false;
 	}
+
+    private void EnableCharacter() {
+        _inputDisabled = false;
+        GetComponentInChildren<Camera>().enabled = true;
+        GetComponent<CharacterController>().enabled = true;
+        GetComponent<FirstPersonController>().enabled = true;
+    }
 
 	[Command]
 	void CmdRun(bool b) {
