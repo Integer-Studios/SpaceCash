@@ -21,6 +21,7 @@ public class Player : NetworkBehaviour {
 	private bool _parentingCooldown = true;
 	private bool _inputDisabled;
     private Camera _camera;
+    private float ArmLength = 5f;
 
 	void Start() {
 		
@@ -177,7 +178,7 @@ public class Player : NetworkBehaviour {
     private RaycastHit GetHit() {
         RaycastHit hit;
        
-        Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, 5f);
+        Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, ArmLength);
         return hit;
     }
 
