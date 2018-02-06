@@ -62,7 +62,7 @@ public class Player : NetworkBehaviour {
 
 
 
-        if (Input.GetKeyDown(KeyCode.P)) {
+        if (Input.GetKeyDown(KeyCode.X)) {
 
             if (_ship.HasDriver && _ship.Driving)
                 StopDriveShip();
