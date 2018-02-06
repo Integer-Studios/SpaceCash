@@ -4,7 +4,7 @@ using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
 
-	[RequireComponent(typeof (CharacterController))]
+	//[RequireComponent(typeof (CharacterController))]
 	[RequireComponent(typeof (AudioSource))]
 	public class FirstPersonController : MonoBehaviour
 	{
@@ -32,7 +32,7 @@ using Random = UnityEngine.Random;
 		private float m_YRotation;
 		private Vector2 m_Input;
 		private Vector3 m_MoveDir = Vector3.zero;
-		private CharacterController m_CharacterController;
+		//private CharacterController m_CharacterController;
 		private CollisionFlags m_CollisionFlags;
 		private bool m_PreviouslyGrounded;
 		private Vector3 m_OriginalCameraPosition;
@@ -40,11 +40,19 @@ using Random = UnityEngine.Random;
 		private float m_NextStep;
 		private bool m_Jumping;
 		private AudioSource m_AudioSource;
+        private float distToGround;
+        private Rigidbody _rigid;
+        private Collider _collider;
+        private Vector3 _currentGravity;
+    private Quaternion _test;
 
 		// Use this for initialization
-		private void Start()
-		{
-			m_CharacterController = GetComponent<CharacterController>();
+		private void Start() {
+            _rigid = GetComponent<Rigidbody>();
+            _collider = GetComponent<Collider>();
+            distToGround = _collider.bounds.extents.y;
+
+			//m_CharacterController = GetComponent<CharacterController>();
 			m_Camera = Camera.main;
 			m_OriginalCameraPosition = m_Camera.transform.localPosition;
 			m_FovKick.Setup(m_Camera);
@@ -54,15 +62,22 @@ using Random = UnityEngine.Random;
 			m_Jumping = false;
 			m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+        _test = transform.localRotation;
 		}
 
-	public void SetParent(Transform t) {
-		m_MouseLook.SetParent (t);
-	}
 
-	public void RemoveParent(Transform t) {
-		m_MouseLook.RemoveParent (t);
-	}
+        public void ReInitMouseLook() {
+            m_MouseLook.Init(transform, m_Camera.transform);
+        }
+
+    	public void SetParent(Transform t) {
+            transform.localRotation = _test;
+            ReInitMouseLook();
+    	}
+
+    	public void RemoveParent(Transform t) {
+            ReInitMouseLook();
+    	}
 
 
 		// Update is called once per frame
@@ -75,19 +90,19 @@ using Random = UnityEngine.Random;
 				m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
 			}
 
-			if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
+			if (!m_PreviouslyGrounded && IsGrounded())
 			{
 				StartCoroutine(m_JumpBob.DoBobCycle());
 				PlayLandingSound();
 				m_MoveDir.y = 0f;
 				m_Jumping = false;
 			}
-			if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
+			if (!IsGrounded() && !m_Jumping && m_PreviouslyGrounded)
 			{
 				m_MoveDir.y = 0f;
 			}
 
-			m_PreviouslyGrounded = m_CharacterController.isGrounded;
+			m_PreviouslyGrounded = IsGrounded();
 		}
 
 
@@ -98,48 +113,52 @@ using Random = UnityEngine.Random;
 			m_NextStep = m_StepCycle + .5f;
 		}
 
+        private void FixedUpdate() {
+            Vector3 gravity = GetComponent<Player>().GetGravity();
+            float speed;
+            GetInput(out speed);
+            // always move along the camera forward as it is the direction that it being aimed at
+            Vector3 desiredMove = transform.forward * m_Input.y + transform.right * m_Input.x;
 
-		private void FixedUpdate()
-		{
-			float speed;
-			GetInput(out speed);
-			// always move along the camera forward as it is the direction that it being aimed at
-			Vector3 desiredMove = transform.forward*m_Input.y + transform.right*m_Input.x;
+            // get a normal for the surface that is being touched to move along it
+            RaycastHit hitInfo;
+            Physics.SphereCast(transform.position,((CapsuleCollider)_collider).radius, gravity.normalized, out hitInfo,
+                               ((CapsuleCollider)_collider).height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+            desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
 
-			// get a normal for the surface that is being touched to move along it
-			RaycastHit hitInfo;
-			Physics.SphereCast(transform.position, m_CharacterController.radius, Vector3.down, out hitInfo,
-				m_CharacterController.height/2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
-			desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
+            m_MoveDir.x = desiredMove.x * speed;
+            m_MoveDir.z = desiredMove.z * speed;
+            m_MoveDir.y = desiredMove.y * speed;
 
-			m_MoveDir.x = desiredMove.x*speed;
-			m_MoveDir.z = desiredMove.z*speed;
-
-
-			if (m_CharacterController.isGrounded)
-            {
-                m_MoveDir.y = -m_StickToGroundForce;
-
-                if (m_Jump)
-                {
-                    m_MoveDir.y = m_JumpSpeed;
+            if (IsGrounded()) {
+                //m_MoveDir.y = -m_StickToGroundForce;
+                _currentGravity = gravity.normalized * m_StickToGroundForce;
+                if (m_Jump) {
+                    _currentGravity = -gravity.normalized * m_JumpSpeed;
+                    //m_MoveDir.y = m_JumpSpeed;
                     PlayJumpSound();
                     m_Jump = false;
                     m_Jumping = true;
                 }
+            } else {
+                _currentGravity += gravity * m_GravityMultiplier * Time.fixedDeltaTime;
             }
-            else
-            {
-			m_MoveDir += GetComponent<Player>().GetGravity()*m_GravityMultiplier*Time.fixedDeltaTime;
-            }
-			m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
+                   
+            if (gravity == Vector3.zero) 
+                _currentGravity = Vector3.zero;
 
-			ProgressStepCycle(speed);
-			UpdateCameraPosition(speed);
+            m_MoveDir += _currentGravity;
+         
+            GetComponent<Rigidbody>().velocity = m_MoveDir;
+
+            ProgressStepCycle(speed);
+            UpdateCameraPosition(speed);
 
 
-			m_MouseLook.UpdateCursorLock();
-		}
+            m_MouseLook.UpdateCursorLock();
+        }
+
+	
 
 
 		private void PlayJumpSound()
@@ -151,9 +170,9 @@ using Random = UnityEngine.Random;
 
 		private void ProgressStepCycle(float speed)
 		{
-			if (m_CharacterController.velocity.sqrMagnitude > 0 && (m_Input.x != 0 || m_Input.y != 0))
+			if (_rigid.velocity.sqrMagnitude > 0 && (m_Input.x != 0 || m_Input.y != 0))
 			{
-				m_StepCycle += (m_CharacterController.velocity.magnitude + (speed*(m_IsWalking ? 1f : m_RunstepLenghten)))*
+				m_StepCycle += (_rigid.velocity.magnitude + (speed*(m_IsWalking ? 1f : m_RunstepLenghten)))*
 					Time.fixedDeltaTime;
 			}
 
@@ -170,7 +189,7 @@ using Random = UnityEngine.Random;
 
 		private void PlayFootStepAudio()
 		{
-			if (!m_CharacterController.isGrounded)
+			if (!IsGrounded())
 			{
 				return;
 			}
@@ -193,12 +212,12 @@ using Random = UnityEngine.Random;
 				return;
 			}
 			// downsample to avoid weird artifacts
-			int i = (int)(m_CharacterController.velocity.magnitude * 100f);
+			int i = (int)(_rigid.velocity.magnitude * 100f);
 			float f = (float)i;
-			if (f > 0 && m_CharacterController.isGrounded)
+			if (f > 0 && IsGrounded())
 			{
 				m_Camera.transform.localPosition =
-					m_HeadBob.DoHeadBob(m_CharacterController.velocity.magnitude +
+					m_HeadBob.DoHeadBob(_rigid.velocity.magnitude +
 						(speed*(m_IsWalking ? 1f : m_RunstepLenghten)));
 				newCameraPosition = m_Camera.transform.localPosition;
 				newCameraPosition.y = m_Camera.transform.localPosition.y - m_JumpBob.Offset();
@@ -237,7 +256,7 @@ using Random = UnityEngine.Random;
 
 			// handle speed change to give an fov kick
 			// only if the player is going to a run, is running and the fovkick is to be used
-			if (m_IsWalking != waswalking && m_UseFovKick && m_CharacterController.velocity.sqrMagnitude > 0)
+			if (m_IsWalking != waswalking && m_UseFovKick && _rigid.velocity.sqrMagnitude > 0)
 			{
 				StopAllCoroutines();
 				StartCoroutine(!m_IsWalking ? m_FovKick.FOVKickUp() : m_FovKick.FOVKickDown());
@@ -264,6 +283,10 @@ using Random = UnityEngine.Random;
 			{
 				return;
 			}
-			body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
+			body.AddForceAtPosition(_rigid.velocity*0.1f, hit.point, ForceMode.Impulse);
 		}
+
+        bool IsGrounded() {
+            return Physics.Raycast(transform.position, GetComponent<Player>().GetGravity(), distToGround + 0.1f);
+        }
 	}

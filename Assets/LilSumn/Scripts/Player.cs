@@ -43,7 +43,10 @@ public class Player : NetworkBehaviour {
 	}
 	
 	void Update() {
+        if (transform.parent == null) {
+            _ship = null;
 
+        }
 		_displacement = Vector3.Distance (_prevPos, transform.localPosition);
 		_prevPos = transform.localPosition;
 		if (isLocalPlayer && _clientRunning)
@@ -116,8 +119,9 @@ public class Player : NetworkBehaviour {
 				transform.SetParent(_ship.transform);
 				GetComponent<FirstPersonController> ().SetParent (_ship.transform);
 			} else {
+                transform.SetParent(null);
+
 				GetComponent<FirstPersonController> ().RemoveParent (_ship.transform);
-				transform.SetParent(null);
 				_ship = null;
 			}
 		}
@@ -150,14 +154,14 @@ public class Player : NetworkBehaviour {
 	private void DisableCharacter() {
 		_inputDisabled = true;
         _camera.enabled = false;
-		GetComponent<CharacterController> ().enabled = false;
+		//GetComponent<CharacterController> ().enabled = false;
 		GetComponent<FirstPersonController> ().enabled = false;
 	}
 
     private void EnableCharacter() {
         _inputDisabled = false;
         _camera.enabled = true;
-        GetComponent<CharacterController>().enabled = true;
+        //GetComponent<CharacterController>().enabled = true;
         GetComponent<FirstPersonController>().enabled = true;
     }
 

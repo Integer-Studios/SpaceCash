@@ -27,13 +27,15 @@ using UnityStandardAssets.CrossPlatformInput;
 			_ship = ship;
 		}
 
-	public void SetParent(Transform t) {
-		m_CharacterTargetRot = Quaternion.Euler(m_CharacterTargetRot.eulerAngles - t.localEulerAngles);
-	}
 
-	public void RemoveParent(Transform t) {
-		m_CharacterTargetRot = Quaternion.Euler(m_CharacterTargetRot.eulerAngles + t.localEulerAngles);
-	}
+
+	//public void SetParent(Transform t) {
+	//	m_CharacterTargetRot = Quaternion.Euler(m_CharacterTargetRot.eulerAngles - t.localEulerAngles);
+	//}
+
+	//public void RemoveParent(Transform t) {
+	//	m_CharacterTargetRot = Quaternion.Euler(m_CharacterTargetRot.eulerAngles + t.localEulerAngles);
+	//}
 
 		public void LookRotation(Transform character, Transform camera)
 		{

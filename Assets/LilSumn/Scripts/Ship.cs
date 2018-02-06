@@ -17,6 +17,9 @@ public class Ship : NetworkBehaviour {
     public float RollSpeed = 5;
     public float VertSpeed = 5;
 
+    private Vector3 _correctPosition;
+    private Vector3 _correctRotation;
+
     private Transform _camTarget;
     private bool _alive = true;
 
@@ -85,8 +88,11 @@ public class Ship : NetworkBehaviour {
 
     [Server]
     public void UnSetDriver(GameObject player) {
+        _correctPosition = transform.position;
+        _correctRotation = transform.eulerAngles;
         HasDriver = false;
         GetComponent<NetworkIdentity>().RemoveClientAuthority(player.GetComponent<NetworkIdentity>().connectionToClient);
+        GetComponent<LilNetTransform>().OverridePosition(_correctPosition, _correctRotation);
     }
 
 	
