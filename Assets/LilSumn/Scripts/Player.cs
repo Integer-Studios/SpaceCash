@@ -20,6 +20,7 @@ public class Player : NetworkBehaviour {
 	private bool _clientRunning;
 	private bool _parentingCooldown = true;
 	private bool _inputDisabled;
+    private Camera _camera;
 
 	void Start() {
 		
@@ -27,6 +28,7 @@ public class Player : NetworkBehaviour {
 		_rigidbody = GetComponent<Rigidbody> ();
 		_animator = GetComponentInChildren<Animator> ();
 		_cmd = GetComponent<CommandCenter> ();
+        _camera = GetComponentInChildren<Camera>();
 		transform.parent = _ship.transform;
 
 		if (!isLocalPlayer) {
@@ -58,19 +60,22 @@ public class Player : NetworkBehaviour {
 			_animator.SetBool ("Grounded", true);
 		}
 
-        if (Input.GetKeyDown(KeyCode.P)) {
-            if (!_ship.HasDriver)
-                AttemptDriveShip();
-            else
-                StopDriveShip();
 
+
+        if (Input.GetKeyDown(KeyCode.P)) {
+
+            if (_ship.HasDriver && _ship.Driving)
+                StopDriveShip();
         }
 
 		if (!isLocalPlayer || _inputDisabled) {
 			return;
 		}
 
-       
+        if (Input.GetMouseButtonUp(0)) {
+            Interact();
+        }
+
 		if (Input.GetKey (KeyCode.LeftShift) && !_clientRunning) {
 			_clientRunning = true;
 			CmdRun (_clientRunning);
@@ -145,16 +150,39 @@ public class Player : NetworkBehaviour {
 
 	private void DisableCharacter() {
 		_inputDisabled = true;
-		GetComponentInChildren<Camera> ().enabled = false;
+        _camera.enabled = false;
 		GetComponent<CharacterController> ().enabled = false;
 		GetComponent<FirstPersonController> ().enabled = false;
 	}
 
     private void EnableCharacter() {
         _inputDisabled = false;
-        GetComponentInChildren<Camera>().enabled = true;
+        _camera.enabled = true;
         GetComponent<CharacterController>().enabled = true;
         GetComponent<FirstPersonController>().enabled = true;
+    }
+
+    private void Interact() {
+        RaycastHit hit = GetHit();
+        if (hit.collider != null) {
+            Debug.Log(hit.collider.name);
+            if (hit.collider.gameObject.tag == "steering-console") {
+                //hit.collider.transform.parent.GetComponent<Button>().Press();
+                if (!_ship.HasDriver)
+                    AttemptDriveShip();
+                else
+                    StopDriveShip();
+                
+                return;
+            }
+        }
+    }
+
+    private RaycastHit GetHit() {
+        RaycastHit hit;
+       
+        Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, 5f);
+        return hit;
     }
 
 	[Command]
