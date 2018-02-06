@@ -169,9 +169,6 @@ public class Player : NetworkBehaviour {
             if (hit.collider.gameObject.tag == "steering-console") {
                 if (!_ship.HasDriver)
                     AttemptDriveShip();
-                else
-                    StopDriveShip();
-                
                 return;
             }
         }
