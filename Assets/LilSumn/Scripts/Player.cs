@@ -166,7 +166,6 @@ public class Player : NetworkBehaviour {
     private void Interact() {
         RaycastHit hit = GetHit();
         if (hit.collider != null) {
-            Debug.Log(hit.collider.name);
             if (hit.collider.gameObject.tag == "steering-console") {
                 if (!_ship.HasDriver)
                     AttemptDriveShip();
