@@ -337,3 +337,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LocalPlayer: {fileID: 0}
   CmdCenter: {fileID: 0}
+  ExplosionParticles: {fileID: 1921607652336218, guid: d333392e2d2cf4c5f803656f0feb0c13,
+    type: 2}

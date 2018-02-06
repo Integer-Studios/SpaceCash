@@ -18,6 +18,7 @@ public class Ship : NetworkBehaviour {
     public float VertSpeed = 5;
 
     private Transform _camTarget;
+    private bool _alive = true;
 
 	private void Start() {
 		if (NetworkServer.active)
@@ -38,6 +39,8 @@ public class Ship : NetworkBehaviour {
 	}
 
 	private void Update() {
+        if (!_alive)
+            return;
 		if (NetworkServer.active)
 			UpdateServer ();
 		if (NetworkClient.active)
@@ -63,6 +66,16 @@ public class Ship : NetworkBehaviour {
         Camera.transform.position = _camTarget.transform.position;
         Camera.transform.rotation = _camTarget.transform.rotation;
 	}
+
+    public void OnTriggerEnter(Collider col) {
+        if (!hasAuthority || !_alive)
+            return;
+        if (col.gameObject.tag == "rock") {
+            Debug.Log("boom boom");
+            Instantiate(GameController.Instance.ExplosionParticles, transform.position, Quaternion.identity);
+            _alive = false;
+        }
+    }
 
 	[Server]
 	public void SetDriver(GameObject player) {

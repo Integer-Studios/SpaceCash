@@ -112,12 +112,10 @@ public class Player : NetworkBehaviour {
 			_parentingCooldown = false;
 			StartCoroutine (CooldownParenting ());
 			if (transform.parent == null) {
-				Debug.Log ("enter");
 				_ship = c.gameObject.transform.parent.GetComponentInParent<Ship> ();
 				transform.SetParent(_ship.transform);
 				GetComponent<FirstPersonController> ().SetParent (_ship.transform);
 			} else {
-				Debug.Log ("exit");
 				GetComponent<FirstPersonController> ().RemoveParent (_ship.transform);
 				transform.SetParent(null);
 				_ship = null;

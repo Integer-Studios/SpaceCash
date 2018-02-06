@@ -21,7 +21,6 @@ public class LilNetTransform : NetworkBehaviour {
 			StartCoroutine (NetworkTransformUpdate ());
 	}
 	public override void OnStartAuthority() {
-		Debug.Log ("boom");
 		StartCoroutine (NetworkTransformUpdate ());
 	}
 
@@ -42,7 +41,6 @@ public class LilNetTransform : NetworkBehaviour {
 
 	// update loop
 	private IEnumerator NetworkTransformUpdate() {
-		Debug.Log ("I'm firing updates " + gameObject.name);
 		while (enabled && hasAuthority) {
 			if (NetworkServer.active) // no need for command u are the server
 				RpcTransform (transform.localPosition, transform.localEulerAngles, Parent());

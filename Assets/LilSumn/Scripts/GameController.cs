@@ -10,6 +10,8 @@ public class GameController : MonoBehaviour {
 	[HideInInspector]
 	public CommandCenter CmdCenter;
 
+    public GameObject ExplosionParticles;
+
 	void Awake () {
 		Instance = this;
 	}
