@@ -27,7 +27,6 @@ public class LilNetTransform : NetworkBehaviour {
     public void OverridePosition(Vector3 position, Vector3 rotation) {
         _correctPosition = position;
         _correctRotation = rotation;
-
     }
 
 	// update transform if you don't have authority

@@ -59,7 +59,11 @@ public class Ship : NetworkBehaviour {
             transform.Rotate(new Vector3(Input.GetAxis("Vertical") * VertSpeed, 0, Input.GetAxis("Horizontal") * -1f * RollSpeed)* Time.deltaTime);
             transform.Translate(Vector3.forward * Speed * Time.deltaTime);
             // cam lerping
+            if (Vector3.Distance(Cam.transform.position, _camTarget.transform.position) < 1f)
+                Cam.transform.position = _camTarget.transform.position;
             Cam.transform.position = Vector3.Lerp(Cam.transform.position, _camTarget.transform.position, 0.1f);
+            if (Vector3.Distance(Cam.transform.eulerAngles, _camTarget.transform.eulerAngles) < 1f)
+                Cam.transform.rotation = _camTarget.transform.rotation;
             Cam.transform.rotation = Quaternion.Lerp(Cam.transform.rotation, _camTarget.transform.rotation, 0.1f);
         }
 	}

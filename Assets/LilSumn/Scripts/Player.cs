@@ -70,6 +70,9 @@ public class Player : NetworkBehaviour {
 
             if (_ship.HasDriver && _ship.Driving)
                 StopDriveShip();
+
+            if (_ship.Gun1.HasController && _ship.Gun1.Controlling)
+                StopControlGun();
         }
 
 		if (!isLocalPlayer || _inputDisabled) {
