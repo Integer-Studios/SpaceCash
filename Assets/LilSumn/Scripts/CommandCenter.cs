@@ -14,5 +14,15 @@ public class CommandCenter : NetworkBehaviour {
     public void CmdStopDriveShip(GameObject g) {
         g.GetComponent<Ship>().UnSetDriver(gameObject);
     }
+
+    [Command]
+    public void CmdControlGun(GameObject g) {
+        g.GetComponent<Gun>().SetController(gameObject);
+    }
+
+    [Command]
+    public void CmdStopControlGun(GameObject g) {
+        g.GetComponent<Gun>().UnSetController(gameObject);
+    }
 		
 }

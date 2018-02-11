@@ -151,6 +151,25 @@ public class Player : NetworkBehaviour {
  
     }
 
+    private void AttemptControlGun() {
+        if (!_ship.Gun1.HasController) {
+            _cmd.CmdControlGun(_ship.Gun1.gameObject);
+            _ship.Gun1.Controlling = true;
+            DisableCharacter();
+            _ship.Gun1.SetCameraActive(true);
+        }
+    }
+
+    private void StopControlGun() {
+        if (_ship.Gun1.HasController) {
+            _ship.Gun1.Controlling = false;
+            EnableCharacter();
+            _ship.Gun1.SetCameraActive(false);
+            _cmd.CmdStopControlGun(_ship.Gun1.gameObject);
+        }
+
+    }
+
 	private void DisableCharacter() {
 		_inputDisabled = true;
         _camera.enabled = false;
@@ -169,8 +188,10 @@ public class Player : NetworkBehaviour {
         RaycastHit hit = GetHit();
         if (hit.collider != null) {
             if (hit.collider.gameObject.tag == "steering-console") {
-                if (!_ship.HasDriver)
-                    AttemptDriveShip();
+                AttemptDriveShip();
+                return;
+            }else if (hit.collider.gameObject.tag == "gun-controls") {
+                AttemptControlGun();
                 return;
             }
         }

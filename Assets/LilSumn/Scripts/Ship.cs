@@ -6,11 +6,11 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class Ship : NetworkBehaviour {
 
-	public Camera Camera;
+	public Camera Cam;
+    public Gun Gun1;
 
 	[SyncVar]
 	public bool HasDriver;
-
 	public bool Driving;
 
     public float Speed = 30;
@@ -29,7 +29,7 @@ public class Ship : NetworkBehaviour {
 		if (NetworkClient.active)
 			StartClient ();
         
-		Camera.enabled = false;
+        Cam.enabled = false;
         _camTarget = transform.Find("cam-target");
 	}
 
@@ -59,15 +59,15 @@ public class Ship : NetworkBehaviour {
             transform.Rotate(new Vector3(Input.GetAxis("Vertical") * VertSpeed, 0, Input.GetAxis("Horizontal") * -1f * RollSpeed)* Time.deltaTime);
             transform.Translate(Vector3.forward * Speed * Time.deltaTime);
             // cam lerping
-            Camera.transform.position = Vector3.Lerp(Camera.transform.position, _camTarget.transform.position, 0.1f);
-            Camera.transform.rotation = Quaternion.Lerp(Camera.transform.rotation, _camTarget.transform.rotation, 0.1f);
+            Cam.transform.position = Vector3.Lerp(Cam.transform.position, _camTarget.transform.position, 0.1f);
+            Cam.transform.rotation = Quaternion.Lerp(Cam.transform.rotation, _camTarget.transform.rotation, 0.1f);
         }
 	}
 
 	public void SetCameraActive(bool active) {
-		Camera.enabled = active;
-        Camera.transform.position = _camTarget.transform.position;
-        Camera.transform.rotation = _camTarget.transform.rotation;
+        Cam.enabled = active;
+        Cam.transform.position = _camTarget.transform.position;
+        Cam.transform.rotation = _camTarget.transform.rotation;
 	}
 
     public void OnTriggerEnter(Collider col) {
