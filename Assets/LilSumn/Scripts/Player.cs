@@ -8,6 +8,9 @@ using UnityStandardAssets.CrossPlatformInput;
 public class Player : NetworkBehaviour {
 
 	public float Threshold;
+    public float DragSpeed;
+    public float DragLerp;
+    public Transform DragTarget;
 
 	private Ship _ship;
 	private Rigidbody _rigidbody;
@@ -22,6 +25,7 @@ public class Player : NetworkBehaviour {
 	private bool _inputDisabled;
     private Camera _camera;
     private float ArmLength = 5f;
+    private Rigidbody _dragObject;
 
 	void Start() {
 		
@@ -79,8 +83,12 @@ public class Player : NetworkBehaviour {
 			return;
 		}
 
-        if (Input.GetMouseButtonUp(0)) {
-            Interact();
+        if (Input.GetMouseButtonDown(0)) {
+            if (_dragObject != null) {
+                DragStop();
+            } else {
+                Interact();
+            }
         }
 
 		if (Input.GetKey (KeyCode.LeftShift) && !_clientRunning) {
@@ -97,7 +105,10 @@ public class Player : NetworkBehaviour {
 			CmdJump ();
 		}
 
-
+        if (_dragObject != null) {
+            _dragObject.velocity = Vector3.Lerp(_dragObject.velocity, (DragTarget.position - _dragObject.transform.position) * DragSpeed, DragLerp);
+            _dragObject.transform.rotation = Quaternion.Lerp(_dragObject.transform.rotation, DragTarget.rotation, DragLerp);
+        }
 		
 	}
 
@@ -193,8 +204,11 @@ public class Player : NetworkBehaviour {
             if (hit.collider.gameObject.tag == "steering-console") {
                 AttemptDriveShip();
                 return;
-            }else if (hit.collider.gameObject.tag == "gun-controls") {
+            } else if (hit.collider.gameObject.tag == "gun-controls") {
                 AttemptControlGun();
+                return;
+            } else if (hit.collider.gameObject.tag == "draggable") {
+                DragStart(hit.collider.gameObject);
                 return;
             }
         }
@@ -205,6 +219,19 @@ public class Player : NetworkBehaviour {
        
         Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, ArmLength);
         return hit;
+    }
+
+    private void DragStart(GameObject g) {
+        DragTarget.position = g.transform.position;
+        DragTarget.eulerAngles = g.transform.eulerAngles;
+
+        _dragObject = g.GetComponent<Rigidbody>();
+        _dragObject.freezeRotation = true;
+    }
+
+    private void DragStop() {
+        _dragObject.freezeRotation = false;
+        _dragObject = null;
     }
 
 	[Command]

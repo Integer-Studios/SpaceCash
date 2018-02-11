@@ -9,6 +9,7 @@ TagManager:
   - steering-console
   - rock
   - gun-controls
+  - draggable
   layers:
   - Default
   - TransparentFX
