@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Obi.CrossPlatformInput
+namespace UnityStandardAssets.CrossPlatformInput
 {
 	[RequireComponent(typeof(Image))]
 	public class TouchPad : MonoBehaviour, IPointerDownHandler, IPointerUpHandler

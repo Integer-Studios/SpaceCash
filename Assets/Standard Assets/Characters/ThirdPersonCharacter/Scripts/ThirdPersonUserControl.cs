@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
-using Obi.CrossPlatformInput;
+using UnityStandardAssets.CrossPlatformInput;
 
-namespace Obi.Characters.ThirdPerson
+namespace UnityStandardAssets.Characters.ThirdPerson
 {
     [RequireComponent(typeof (ThirdPersonCharacter))]
     public class ThirdPersonUserControl : MonoBehaviour
@@ -24,7 +24,7 @@ namespace Obi.Characters.ThirdPerson
             else
             {
                 Debug.LogWarning(
-                    "Warning: no main camera found. Third person character needs a Camera tagged \"MainCamera\", for camera-relative controls.");
+                    "Warning: no main camera found. Third person character needs a Camera tagged \"MainCamera\", for camera-relative controls.", gameObject);
                 // we use self-relative controls in this case, which probably isn't what the user wants, but hey, we warned them!
             }
 
@@ -66,7 +66,7 @@ namespace Obi.Characters.ThirdPerson
 			// walk speed multiplier
 	        if (Input.GetKey(KeyCode.LeftShift)) m_Move *= 0.5f;
 #endif
-	
+
             // pass all parameters to the character control script
             m_Character.Move(m_Move, crouch, m_Jump);
             m_Jump = false;

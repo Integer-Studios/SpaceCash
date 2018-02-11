@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 
 
-namespace Obi.CrossPlatformInput
+namespace UnityStandardAssets.CrossPlatformInput
 {
     [ExecuteInEditMode]
     public class MobileControlRig : MonoBehaviour

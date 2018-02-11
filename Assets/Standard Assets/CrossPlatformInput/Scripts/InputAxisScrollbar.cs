@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Obi.CrossPlatformInput
+namespace UnityStandardAssets.CrossPlatformInput
 {
     public class InputAxisScrollbar : MonoBehaviour
     {
