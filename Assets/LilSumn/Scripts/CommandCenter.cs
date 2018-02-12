@@ -24,5 +24,15 @@ public class CommandCenter : NetworkBehaviour {
     public void CmdStopControlGun(GameObject g) {
         g.GetComponent<Gun>().UnSetController(gameObject);
     }
+
+    [Command]
+    public void CmdGetRopeAuth(GameObject g) {
+        g.GetComponent<LilNetTransformRope>().GetAuth(gameObject);
+    }
+
+    [Command]
+    public void CmdGiveupRopeAuth(GameObject g) {
+        g.GetComponent<LilNetTransformRope>().GiveupAuth(gameObject);
+    }
 		
 }

@@ -26,22 +26,24 @@ public class Player : NetworkBehaviour {
     private Camera _camera;
     private float ArmLength = 5f;
     private Rigidbody _dragObject;
-
+    private GravityZone _gZone;
+    private GameController _gc;
 	void Start() {
-		
+        _gc = GameController.Instance;
 		_ship = FindObjectOfType<Ship> ();
 		_rigidbody = GetComponent<Rigidbody> ();
 		_animator = GetComponentInChildren<Animator> ();
 		_cmd = GetComponent<CommandCenter> ();
         _camera = GetComponentInChildren<Camera>();
 		transform.parent = _ship.transform;
+        _gZone = _ship.GetComponent<GravityZone>();
 
 		if (!isLocalPlayer) {
 			DisableCharacter ();
 			GetComponentInChildren<AudioListener> ().enabled = false;
 		} else {
-			_animator.gameObject.GetComponentInChildren<SkinnedMeshRenderer> ().gameObject.layer = 10;
-			GetComponentInChildren<Camera> ().cullingMask = ~(1 << 10);
+			_animator.gameObject.GetComponentInChildren<SkinnedMeshRenderer> ().gameObject.layer = 12;
+			GetComponentInChildren<Camera> ().cullingMask = ~(1 << 12);
 			GameController.Instance.RegisterLocalPlayer (this);
 		}
 	}
@@ -119,9 +121,9 @@ public class Player : NetworkBehaviour {
 	}
 
 	public Vector3 GetGravity() {
-		if (_ship == null)
+        if (_gZone == null)
 			return Vector3.zero;
-		return _ship.transform.up * -9.81f;
+        return _gZone.GetGravity();
 	}
 
 	void OnTriggerEnter(Collider c) {
@@ -225,25 +227,24 @@ public class Player : NetworkBehaviour {
         _dragObject = g.GetComponentInParent<Rigidbody>();
         Plug p = _dragObject.GetComponent<Plug>();
         if (p != null) {
+            _cmd.CmdGetRopeAuth(_gc.GetComponentInParents<LilNetTransformRope>(g).gameObject);
             if (p.PluggedIn)
                 p.Unplug();
-            p.SetJointMassScale(100);
         }
         _dragObject.freezeRotation = true;
-        _dragObject.useGravity = false;
         DragTarget.position = _dragObject.transform.position;
         DragTarget.eulerAngles = _dragObject.transform.eulerAngles;
     }
 
     private void DragStop() {
         Plug p = _dragObject.GetComponent<Plug>();
+        if (p != null) {
+            if (!p.AttemptPlugin()) {
+                _cmd.CmdGiveupRopeAuth(_gc.GetComponentInParents<LilNetTransformRope>(_dragObject.gameObject).gameObject);
+            }
+        }
         _dragObject.freezeRotation = false;
         _dragObject = null;
-        if (p != null) {
-            p.SetJointMassScale(1);
-            p.AttemptPlugin();
-        }
-
 
     }
 

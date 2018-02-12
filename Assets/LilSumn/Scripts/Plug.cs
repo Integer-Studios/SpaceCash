@@ -9,14 +9,7 @@ public class Plug : MonoBehaviour {
 
     private Outlet _outlet;
 
-    public void SetJointMassScale(int i) {
-        if (JointToMassScale.gameObject == this.gameObject)
-            JointToMassScale.connectedMassScale = i;
-        else
-            JointToMassScale.massScale = i;
-    }
-
-    public void AttemptPlugin() {
+    public bool AttemptPlugin() {
         Collider[] cols = Physics.OverlapSphere(transform.position, 1f);
         List<Outlet> outlets = new List<Outlet>();
         foreach (Collider c in cols) {
@@ -28,7 +21,9 @@ public class Plug : MonoBehaviour {
         if (outlets.Count > 0) {
             outlets.Sort(new DistanceComparer(transform.position));
             StartCoroutine(Plugin(outlets[0]));
+            return true;
         }
+        return false;
     }
 
     private IEnumerator Plugin(Outlet o) {
