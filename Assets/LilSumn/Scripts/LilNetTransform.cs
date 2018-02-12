@@ -17,8 +17,11 @@ public class LilNetTransform : NetworkBehaviour {
 
 	// start updating when you get authority
 	void Start() {
-		if (hasAuthority)
-			StartCoroutine (NetworkTransformUpdate ());
+        if (hasAuthority) {
+            _correctPosition = transform.localPosition;
+            _correctRotation = transform.localEulerAngles;
+            StartCoroutine(NetworkTransformUpdate());
+        }
 	}
 	public override void OnStartAuthority() {
 		StartCoroutine (NetworkTransformUpdate ());

@@ -225,7 +225,7 @@ public class Player : NetworkBehaviour {
         DragTarget.position = g.transform.position;
         DragTarget.eulerAngles = g.transform.eulerAngles;
 
-        _dragObject = g.GetComponent<Rigidbody>();
+        _dragObject = g.GetComponentInParent<Rigidbody>();
         _dragObject.freezeRotation = true;
     }
 
