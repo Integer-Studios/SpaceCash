@@ -106,7 +106,7 @@ public class Player : NetworkBehaviour {
 		}
 
         if (_dragObject != null) {
-            _dragObject.velocity = Vector3.Lerp(_dragObject.velocity, (DragTarget.position - _dragObject.transform.position) * DragSpeed, DragLerp);
+            _dragObject.velocity = (DragTarget.position - _dragObject.transform.position) * DragSpeed;
             _dragObject.transform.rotation = Quaternion.Lerp(_dragObject.transform.rotation, DragTarget.rotation, DragLerp);
         }
 		
@@ -222,16 +222,29 @@ public class Player : NetworkBehaviour {
     }
 
     private void DragStart(GameObject g) {
-        DragTarget.position = g.transform.position;
-        DragTarget.eulerAngles = g.transform.eulerAngles;
-
         _dragObject = g.GetComponentInParent<Rigidbody>();
+        Plug p = _dragObject.GetComponent<Plug>();
+        if (p != null) {
+            if (p.PluggedIn)
+                p.Unplug();
+            p.SetJointMassScale(100);
+        }
         _dragObject.freezeRotation = true;
+        _dragObject.useGravity = false;
+        DragTarget.position = _dragObject.transform.position;
+        DragTarget.eulerAngles = _dragObject.transform.eulerAngles;
     }
 
     private void DragStop() {
+        Plug p = _dragObject.GetComponent<Plug>();
         _dragObject.freezeRotation = false;
         _dragObject = null;
+        if (p != null) {
+            p.SetJointMassScale(1);
+            p.AttemptPlugin();
+        }
+
+
     }
 
 	[Command]

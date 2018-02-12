@@ -14,6 +14,8 @@ public class GameController : MonoBehaviour {
 
 	void Awake () {
 		Instance = this;
+        Physics.IgnoreLayerCollision(11,11);
+        Physics.IgnoreLayerCollision(10, 11);
 	}
 
 	public void RegisterLocalPlayer(Player p) {
