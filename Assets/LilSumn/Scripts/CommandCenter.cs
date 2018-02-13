@@ -26,13 +26,13 @@ public class CommandCenter : NetworkBehaviour {
     }
 
     [Command]
-    public void CmdGetRopeAuth(GameObject g) {
-        g.GetComponent<LilNetTransformRope>().GetAuth(gameObject);
+    public void CmdGetCordAuth(GameObject g, bool IsRight) {
+        g.GetComponent<Cord>().GetAuth(gameObject, IsRight);
     }
 
     [Command]
-    public void CmdGiveupRopeAuth(GameObject g) {
-        g.GetComponent<LilNetTransformRope>().GiveupAuth(gameObject);
+    public void CmdGiveupCordAuth(GameObject g) {
+        g.GetComponent<Cord>().GiveupAuth(gameObject);
     }
 		
 }

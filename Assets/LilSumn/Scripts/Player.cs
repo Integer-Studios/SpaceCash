@@ -227,7 +227,7 @@ public class Player : NetworkBehaviour {
         _dragObject = g.GetComponentInParent<Rigidbody>();
         Plug p = _dragObject.GetComponent<Plug>();
         if (p != null) {
-            _cmd.CmdGetRopeAuth(_gc.GetComponentInParents<LilNetTransformRope>(g).gameObject);
+            _cmd.CmdGetCordAuth(_gc.GetComponentInParents<Cord>(g).gameObject, p.IsRoot);
             if (p.PluggedIn)
                 p.Unplug();
         }
@@ -240,7 +240,7 @@ public class Player : NetworkBehaviour {
         Plug p = _dragObject.GetComponent<Plug>();
         if (p != null) {
             if (!p.AttemptPlugin()) {
-                _cmd.CmdGiveupRopeAuth(_gc.GetComponentInParents<LilNetTransformRope>(_dragObject.gameObject).gameObject);
+                _cmd.CmdGiveupCordAuth(_gc.GetComponentInParents<Cord>(_dragObject.gameObject).gameObject);
             }
         }
         _dragObject.freezeRotation = false;

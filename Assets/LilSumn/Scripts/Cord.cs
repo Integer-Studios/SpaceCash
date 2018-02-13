@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class LilNetTransformRope : NetworkBehaviour {
+public class Cord : NetworkBehaviour {
 
     public float Interval = 9f;
     public float Smoothing = 0.5f;
@@ -32,7 +32,9 @@ public class LilNetTransformRope : NetworkBehaviour {
         StartCoroutine(NetworkTransformUpdate());
     }
 
-    public void GetAuth(GameObject player) {
+    public void GetAuth(GameObject player, bool IsRoot) {
+        RpcUnplug(IsRoot);
+
         if (player != GameController.Instance.LocalPlayer.gameObject)
             GetComponent<NetworkIdentity>().AssignClientAuthority(player.GetComponent<NetworkIdentity>().connectionToClient);
     }
@@ -137,4 +139,35 @@ public class LilNetTransformRope : NetworkBehaviour {
             return transform.parent.gameObject;
     }
 
+    [Command]
+    public void CmdPlugin(GameObject outlet, bool isRoot) {
+        if (!hasAuthority) {
+            if (isRoot)
+                _root.GetComponent<Plug>().RemotePlugin(outlet.GetComponent<Outlet>());
+            else
+                _end.GetComponent<Plug>().RemotePlugin(outlet.GetComponent<Outlet>());
+        }
+        RpcPlugin(outlet, isRoot);
+    }
+
+    [ClientRpc]
+    public void RpcPlugin(GameObject outlet, bool isRoot) {
+        if (!hasAuthority) {
+            if (isRoot)
+                _root.GetComponent<Plug>().RemotePlugin(outlet.GetComponent<Outlet>());
+            else
+                _end.GetComponent<Plug>().RemotePlugin(outlet.GetComponent<Outlet>());
+        }
+    }
+
+    [ClientRpc]
+    public void RpcUnplug(bool isRoot) {
+        if (isRoot) {
+            if (_root.GetComponent<Plug>().PluggedIn)
+                _root.GetComponent<Plug>().Unplug();  
+        } else {
+            if (_end.GetComponent<Plug>().PluggedIn)
+                _end.GetComponent<Plug>().Unplug();
+        }
+    }
 }

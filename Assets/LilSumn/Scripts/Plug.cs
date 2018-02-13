@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Plug : MonoBehaviour {
 
+    public bool IsRoot;
     public Joint JointToMassScale;
     public bool PluggedIn = false;
 
     private Outlet _outlet;
+    private Cord _cord;
 
     public bool AttemptPlugin() {
+        _cord = GameController.Instance.GetComponentInParents<Cord>(gameObject);
         Collider[] cols = Physics.OverlapSphere(transform.position, 1f);
         List<Outlet> outlets = new List<Outlet>();
         foreach (Collider c in cols) {
@@ -20,13 +23,22 @@ public class Plug : MonoBehaviour {
         }
         if (outlets.Count > 0) {
             outlets.Sort(new DistanceComparer(transform.position));
-            StartCoroutine(Plugin(outlets[0]));
+            LocalPlugin(outlets[0]);
             return true;
         }
         return false;
     }
 
-    private IEnumerator Plugin(Outlet o) {
+    public void LocalPlugin(Outlet o) {
+        _cord.CmdPlugin(o.gameObject, IsRoot);
+        StartCoroutine(Plugin(o, true));
+    }
+
+    public void RemotePlugin(Outlet o) {
+        StartCoroutine(Plugin(o, false));
+    }
+
+    public IEnumerator Plugin(Outlet o, bool local) {
         _outlet = o;
         o.HasCord = true;
         PluggedIn = true;
@@ -37,6 +49,8 @@ public class Plug : MonoBehaviour {
             yield return null;
         }
         Debug.Log("done");
+        if (local)
+            GameController.Instance.CmdCenter.CmdGiveupCordAuth(GameController.Instance.GetComponentInParents<Cord>(gameObject).gameObject);
         transform.position = o.transform.position;
         transform.rotation = o.transform.rotation;
     }
