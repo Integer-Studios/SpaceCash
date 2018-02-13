@@ -94,8 +94,9 @@ public class LilNetTransformRope : NetworkBehaviour {
     private void CmdTransform(Vector3 posr, Vector3 rotr, Vector3 pose, Vector3 rote, GameObject parent) {
         if (!hasAuthority)
             Sync(posr, rotr, pose, rote, parent);
+
         // relay to rpc
-        RpcTransform(_root.localPosition, _root.localEulerAngles, _end.localPosition, _end.localEulerAngles, parent);
+        RpcTransform(_correctPositionRoot, _correctRotationRoot, _correctPositionEnd, _correctRotationEnd, parent);
     }
 
     [ClientRpc]
